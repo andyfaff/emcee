@@ -177,8 +177,7 @@ class Backend(object):
         a = np.empty((i, self.nwalkers), dtype=self.dtype)
         self.log_prob = np.concatenate((self.log_prob, a), axis=0)
         if blobs is not None:
-            dt = np.dtype((blobs.dtype, blobs.shape[1:]))
-            a = np.empty((i, self.nwalkers), dtype=dt)
+            a = np.empty((i, self.nwalkers) + blobs.shape[1:], dtype=blobs.dtype)
             if self.blobs is None:
                 self.blobs = a
             else:
